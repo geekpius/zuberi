@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kBackgroundColor,
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -30,11 +30,8 @@ class SplashScreen extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         backgroundColor: Colors.white,
-                        radius: 40,
-                        child: Text(
-                          "Logo",
-                          style: TextStyle(color: Colors.black),
-                        ),
+                        backgroundImage: AssetImage('assets/images/zuberi.png'),
+                        radius: 30,
                       ),
                       SizedBox(
                         width: 10,
@@ -66,6 +63,8 @@ class SplashScreen extends StatelessWidget {
                 Navigator.pushNamed(context, LoginScreen.nameRoute);
               },
               text: 'Get Started',
+              color: Color(0xFF2D00D3),
+              textStyle: kFontStyle14,
             ),
           ],
         ),
