@@ -37,7 +37,7 @@ class _WithdrawAmountScreenState extends State<WithdrawAmountScreen> {
                   },
                   iconSize: 20,
                 ),
-                SizedBox(width: 100.0),
+                SizedBox(width: 80.0),
                 Text(
                   'Enter amount',
                   style: TextStyle(
