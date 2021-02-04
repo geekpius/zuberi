@@ -16,16 +16,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _widgetTabs = <Widget>[
     Text(
-      'Index 0: Home',
+      '',
       style: kFontStyle14
     ),
     Text(
-      'Index 1: Business',
+      '',
       style: kFontStyle14,
     ),
     HomeTabScreen(),
     Text(
-      'Index 3: School',
+      '',
       style: kFontStyle14,
     ),
     ProfileScreen(),

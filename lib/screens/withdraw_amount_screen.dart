@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_circular_slider/flutter_circular_slider.dart';
-import 'package:zuberi/widgets/icon_text_button.dart';
+import 'package:zuberi/screens/transaction_summary_screen.dart';
+import 'package:zuberi/widgets/rounded_button.dart';
 
 import '../constants.dart';
 
-class WithdrawAmountScreen extends StatelessWidget {
+class WithdrawAmountScreen extends StatefulWidget {
   static const nameRoute = 'withdraw_amount';
+
+  @override
+  _WithdrawAmountScreenState createState() => _WithdrawAmountScreenState();
+}
+
+class _WithdrawAmountScreenState extends State<WithdrawAmountScreen> {
+  int initValue = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -13,193 +21,119 @@ class WithdrawAmountScreen extends StatelessWidget {
       backgroundColor: kBackgroundColor,
       body: Container(
         width: double.infinity,
-        padding: EdgeInsets.only(top: 50.0, left: 40.0, right: 40.0),
+        padding: EdgeInsets.only(top: 50.0, left: 25.0, right: 25.0),
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 IconButton(
                   icon: Icon(
-                    Icons.notifications_none,
-                    color: Color(0xFF2300A6),
+                    Icons.arrow_back_ios_outlined,
+                    color: Colors.black.withOpacity(0.5),
                   ),
-                  onPressed: null,
-                  iconSize: 25,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  iconSize: 20,
                 ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
+                SizedBox(width: 100.0),
                 Text(
-                  'Hello Eugene',
-                  style: kFontStyle20,
+                  'Enter amount',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.black.withOpacity(0.5),
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.only(right: 50),
+              padding: EdgeInsets.only(left: 15.0, right: 15.0),
+              child: Column(
+                children: [
+                  Text(
+                    'How much do you want to withdraw?',
+                    style: kFontStyle20,
+                  ),
+                  SizedBox(height: 80.0),
+                  SingleCircularSlider(
+                    100,
+                    initValue,
+                    baseColor: Color(0xFFE7E7E7),
+                    height: 250,
+                    width: 250,
+                    selectionColor: kCustomBlueColor,
+                    handlerColor: kCustomBlueColor,
+                    showHandlerOutter: false,
+                    onSelectionChange: (int init, int end, int laps){
+                      setState(() {
+                        initValue = end;
+                      });
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 90.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              text: 'GHS ',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                color: kCustomBlueColor,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: '${initValue}',
+                                  style: TextStyle(
+                                    fontSize: 32.0,
+                                    fontWeight: FontWeight.w700,
+                                    color: kCustomBlueColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 80),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 60.0),
+            Center(
               child: RichText(
                 text: TextSpan(
-                  text: 'You have ',
+                  text: 'Available funds ',
                   style: TextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xFF001514)),
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                    color: kCustomPinkColor,
+                  ),
                   children: <TextSpan>[
                     TextSpan(
                       text: 'GHS 3000',
                       style: TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF001514)),
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                        color: kCustomPinkColor,
+                      ),
                     ),
-                    TextSpan(text: ' of your salary remaining this month.'),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 15),
-            Stack(
-              overflow: Overflow.visible,
-              children: [
-                SingleCircularSlider(
-                  100,
-                  100,
-                  baseColor: Color(0xFFE7E7E7),
-                  height: 300,
-                  width: 300,
-                  selectionColor: kCustomBlueColor,
-                  handlerColor: kCustomBlueColor,
-                  showHandlerOutter: false,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 120.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                            text: 'GHS ',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: kCustomBlueColor,
-                            ),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: '66.667',
-                                style: TextStyle(
-                                  fontSize: 32.0,
-                                  fontWeight: FontWeight.w700,
-                                  color: kCustomBlueColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Expanded(
-                          child: Text(
-                            'Amount available',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: kCustomBlueColor,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  left: 60,
-                  right: 60,
-                  bottom: -80,
-                  child: CircleAvatar(
-                    radius: 70,
-                    backgroundColor: kBackgroundColor,
-                    child: SingleCircularSlider(
-                      100,
-                      85,
-                      baseColor: kCustomPinkColor,
-                      height: 150,
-                      width: 150,
-                      selectionColor: Color(0xFFE7E7E7),
-                      handlerColor: Color(0xFFE7E7E7),
-                      sliderStrokeWidth: 5,
-                      showHandlerOutter: false,
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 35.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            RichText(
-                              text: TextSpan(
-                                text: '24 ',
-                                style: TextStyle(
-                                  fontSize: 32.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: kCustomPinkColor,
-                                ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: 'days',
-                                    style: TextStyle(
-                                      fontSize: 16.0,
-                                      color: kCustomPinkColor,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Text(
-                                'until next pay',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Color(0xFFC4C4C4),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 120),
-            Padding(
-              padding: EdgeInsets.only(left: 30, right: 30.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconTextButton(
-                    onPressed: null,
-                    icon: Icon(
-                      Icons.sync,
-                      color: Color(0xFFFF0F80),
-                    ),
-                    text: 'Refresh',
-                    textStyle: kButtonPinkFontStyle,
-                    color: kCustomGrayColor,
-                    minWidth: 30,
-                  ),
-                  IconTextButton(
-                    onPressed: null,
-                    icon: Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                    ),
-                    text: 'Withdraw',
-                    textStyle: kButtonWhiteFontStyle,
-                    color: kCustomBlueColor,
-                    minWidth: 30,
-                  ),
-                ],
-              ),
+            SizedBox(height: 60.0),
+            RoundedButton(
+              onPressed: (){
+                Navigator.pushNamed(context, TransactionSummaryScreen.nameRoute);
+              },
+              text: 'Proceed',
+              color: kCustomBlueColor,
+              textStyle: kButtonWhiteFontStyle,
             ),
           ],
         ),

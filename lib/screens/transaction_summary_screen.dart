@@ -27,7 +27,9 @@ class TransactionSummaryScreen extends StatelessWidget {
                     IconButton(
                       icon:
                           Icon(Icons.cancel_outlined, color: kCustomPinkColor),
-                      onPressed: null,
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
                       iconSize: 40,
                     ),
                   ],
