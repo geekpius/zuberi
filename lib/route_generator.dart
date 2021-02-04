@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:zuberi/screens/congratulation_screen.dart';
 import 'package:zuberi/screens/home_screen.dart';
 import 'package:zuberi/screens/login_screen.dart';
-import 'package:zuberi/screens/profile_screen.dart';
 import 'package:zuberi/screens/splash_screen.dart';
 import 'package:zuberi/screens/transaction_summary_screen.dart';
+import 'package:zuberi/screens/withdraw_amount_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -19,14 +19,15 @@ class RouteGenerator {
       case HomeScreen.nameRoute:
         return MaterialPageRoute(builder: (context) => HomeScreen());
 
+      case WithdrawAmountScreen.nameRoute:
+        return MaterialPageRoute(builder: (context) => WithdrawAmountScreen());
+
       case TransactionSummaryScreen.nameRoute:
         return MaterialPageRoute(builder: (context) => TransactionSummaryScreen());
 
       case CongratulationScreen.nameRoute:
         return MaterialPageRoute(builder: (context) => CongratulationScreen());
 
-      case ProfileScreen.nameRoute:
-        return MaterialPageRoute(builder: (context) => ProfileScreen());
 
       default:
         return _errorRoute();

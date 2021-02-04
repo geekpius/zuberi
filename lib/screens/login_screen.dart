@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zuberi/constants.dart';
 import 'package:zuberi/screens/home_screen.dart';
-import 'package:zuberi/screens/profile_screen.dart';
-import 'package:zuberi/screens/transaction_summary_screen.dart';
 import 'package:zuberi/widgets/input_field.dart';
 import 'package:zuberi/widgets/rounded_button.dart';
 import 'package:zuberi/widgets/screen_heading.dart';
@@ -43,7 +41,7 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 20.0),
             RoundedButton(
               onPressed: () {
-                Navigator.pushNamed(context, ProfileScreen.nameRoute);
+                Navigator.pushNamed(context, HomeScreen.nameRoute);
               },
               text: 'Proceed',
               color: Color(0xFFF3F3F6),

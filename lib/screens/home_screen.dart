@@ -1,66 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:zuberi/screens/home_tab_screen.dart';
+import 'package:zuberi/screens/profile_screen.dart';
 
 import '../constants.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const nameRoute = 'home';
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 2;
+
+  final List<Widget> _widgetTabs = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: kFontStyle14
+    ),
+    Text(
+      'Index 1: Business',
+      style: kFontStyle14,
+    ),
+    HomeTabScreen(),
+    Text(
+      'Index 3: School',
+      style: kFontStyle14,
+    ),
+    ProfileScreen(),
+  ];
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.only(top: 45.0, left: 30.0, right: 30.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 30.0),
-                      child: Text(
-                        'Hello Eugene',
-                        style: kFontStyle20,
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.notifications_none,
-                          color: Color(0xFF2300A6)),
-                      onPressed: null,
-                      iconSize: 30,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15),
-                RichText(
-                  text: TextSpan(
-                    text: 'You have ',
-                    style: TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF001514)),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'GHS 3000',
-                        style: TextStyle(
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF001514)),
-                      ),
-                      TextSpan(text: ' of your salary remaining this month.'),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 15),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body:  _widgetTabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -72,7 +49,18 @@ class HomeScreen extends StatelessWidget {
             label: 'EXPLORE',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart),
+            icon: CircleAvatar(
+              backgroundColor: _currentIndex == 2 ? kCustomPinkColor:Colors.black.withOpacity(0.1),
+              radius: 25,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 23,
+                child: CircleAvatar(
+                  radius: 12,
+                  backgroundImage: AssetImage('assets/images/zuberi.png'),
+                ),
+              ),
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
@@ -86,10 +74,17 @@ class HomeScreen extends StatelessWidget {
         ],
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
-        // currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey[700],
-        // onTap: _onItemTapped,
+        currentIndex: _currentIndex,
+        selectedItemColor: kCustomPinkColor,
+        unselectedItemColor: Colors.black.withOpacity(0.4),
+        selectedFontSize: 8,
+        unselectedFontSize: 8,
+        iconSize: 22,
+        onTap: (index){
+          setState(() {
+            _currentIndex = index;
+          });
+        }
       ),
     );
   }

@@ -62,13 +62,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_circular_chart:
+  flutter_circular_slider:
     dependency: "direct main"
     description:
-      name: flutter_circular_chart
+      name: flutter_circular_slider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0"
+    version: "2.5.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter

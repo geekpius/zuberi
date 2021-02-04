@@ -7,6 +7,19 @@ const kFontStyle14 = TextStyle(
   color: Colors.white,
 );
 
+const kButtonWhiteFontStyle = TextStyle(
+  fontWeight: FontWeight.w700,
+  fontSize: 14,
+  fontStyle: FontStyle.normal,
+  color: Colors.white,
+);
+
+const kButtonPinkFontStyle = TextStyle(
+  fontWeight: FontWeight.w700,
+  fontSize: 14,
+  fontStyle: FontStyle.normal,
+  color: Color(0xFFFF0F80),
+);
 
 const kButtonGreyFontStyle = TextStyle(
   fontWeight: FontWeight.w700,
@@ -27,3 +40,5 @@ const kCustomBlueColor = Color(0xFF2D00D3);
 const kBackgroundColor = Color(0xFFF2F1F6);
 
 const kCustomPinkColor = Color(0xFFFF0F80);
+
+const kCustomGrayColor = Color(0xFFF1F1F1);
